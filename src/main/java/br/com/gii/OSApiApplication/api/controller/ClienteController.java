@@ -5,7 +5,9 @@
 package br.com.gii.OSApiApplication.api.controller;
 
 import br.com.gii.OSApiApplication.domain.model.Cliente;
-import java.util.ArrayList;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,16 +18,17 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class ClienteController {
-    List<Cliente> listaClientes;
+    @PersistenceContext
+            private EntityManager manager;
+    
+    
     
     @GetMapping("/clientes")
     public List<Cliente> listas(){
-        listaClientes = new ArrayList<Cliente>();
-        listaClientes.add(new Cliente(1, "gii", "gii@teste.com", "12 98989-8989"));
-        listaClientes.add(new Cliente(1, "lu", "lu@teste.com", "12 77777-8888"));
-        listaClientes.add(new Cliente(1, "lau", "lau@teste.com", "12 66666-5555"));
-        
-        return listaClientes;
+        //Linguagem JPQL (tipo SQL só que do Jakarta)
+        return manager.createQuery("from Cliente", Cliente.class)
+                .getResultList();
     }
     
 }
+

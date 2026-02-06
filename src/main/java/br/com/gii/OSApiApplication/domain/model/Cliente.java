@@ -4,14 +4,27 @@
  */
 package br.com.gii.OSApiApplication.domain.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+
+
 /**
  *
  * @author Aluno
  */
+@Entity
 public class Cliente {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String name;
-    private String mail;
+    private String nome;
+    private String email;
+    
+    @Column(name = "telefone")
     private String fone;
 
     public long getId() {
@@ -22,20 +35,20 @@ public class Cliente {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getFone() {
@@ -71,14 +84,17 @@ public class Cliente {
 
     public Cliente(long id, String name, String mail, String fone) {
         this.id = id;
-        this.name = name;
-        this.mail = mail;
+        this.nome = name;
+        this.email = mail;
         this.fone = fone;
          
     }
 
     public Cliente() {
+        //Costrutor Default
     }
+ 
+    
     
     
     
