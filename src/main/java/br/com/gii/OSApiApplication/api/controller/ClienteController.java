@@ -6,6 +6,7 @@ package br.com.gii.OSApiApplication.api.controller;
 
 import br.com.gii.OSApiApplication.domain.model.Cliente;
 import br.com.gii.OSApiApplication.domain.repository.ClienteRepository;
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,12 +44,12 @@ public class ClienteController {
     }
           @PostMapping ("/clientes")
          @ResponseStatus(HttpStatus.CREATED)
-         public Cliente adicionar (@RequestBody Cliente cliente) {
+         public Cliente adicionar (@Valid @RequestBody Cliente cliente) {
         
         return clienteRepository.save(cliente);
     }
-         @PutMapping("/cliente/clienteID}")
-         public ResponseEntity<Cliente> atualizar(@PathVariable Long clienteID,
+         @PutMapping("/cliente/{clienteID}")
+         public ResponseEntity<Cliente> atualizar(@Valid @PathVariable Long clienteID,
                  @RequestBody Cliente cliente){
              
              //Verifique se o cliente exist 
