@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.com.gii.OSApiApplication.domain.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,27 +10,30 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-
-
 /**
  *
+ 
  * @author Aluno
  */
 @Entity
 public class Cliente {
+
+    @Schema(name = "ID do Cliente", example = "1", required = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     
     @NotBlank
     @Size(max = 60)
+    @Schema(name = "Nome do Cliente", example = "Joao", required = false)
     private String nome;
-    
+
     @NotBlank
     @Email
-    @Size(max =255)
+    @Size(max = 255)
     private String email;
-    
+
     @NotBlank
     @Size(max = 20)
     @Column(name = "telefone")
@@ -70,7 +70,6 @@ public class Cliente {
     public void setFone(String fone) {
         this.fone = fone;
     }
-    
 
     @Override
     public int hashCode() {
@@ -99,16 +98,11 @@ public class Cliente {
         this.nome = name;
         this.email = mail;
         this.fone = fone;
-         
+
     }
 
     public Cliente() {
         //Costrutor Default
     }
 
-    
-    
-    
-    
-    
 }
